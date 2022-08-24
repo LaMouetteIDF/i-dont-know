@@ -1,17 +1,21 @@
 import React from 'react'
-import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
-import TableIrregularVerb from './components/TableIrregularVerb'
-
-type Awaited<T> = Promise<T> | T
+import Home from './pages/Home'
+import Play from './pages/Play'
+import Verbs from './pages/Verbs'
 
 function App() {
   return (
-    <div className='App h-full'>
-      <Header></Header>
-      <div className='px-5 pt-3 grid place-content-center'>
-        <TableIrregularVerb></TableIrregularVerb>
-      </div>
+    <div className="App h-full">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="play" element={<Play />} />
+          <Route path="verbs" element={<Verbs />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
