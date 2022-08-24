@@ -1,6 +1,6 @@
 export const validResponse = (input: string, response: string) => {
   const parsedResponse = response
-    .split(/[|/,]/)
+    .split(/[|/]/)
     .map(item => item
       .replace(/\(.*\)/, '')
       .trim()
