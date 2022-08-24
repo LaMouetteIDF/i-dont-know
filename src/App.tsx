@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import Header from './components/Header'
+import TableIrregularVerb from './components/TableIrregularVerb'
+
+type Awaited<T> = Promise<T> | T
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App h-full'>
+      <Header></Header>
+      <div className='px-5 pt-3 grid place-content-center'>
+        <TableIrregularVerb></TableIrregularVerb>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
