@@ -4,7 +4,7 @@ import { IrregularVerbRaw } from '../types/IrregularVerbRaw'
 export const Data: IrregularVerb[] = []
 
 export async function initData() {
-  const res: IrregularVerbRaw[] = await fetch('/data/data.json').then((res) =>
+  const res: IrregularVerbRaw[] = await fetch('./data/data.json').then((res) =>
     res.json()
   )
   res.forEach((item) => {
