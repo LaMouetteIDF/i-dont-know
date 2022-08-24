@@ -49,10 +49,8 @@ const Play = () => {
           error={error}
           value={myVerb}
           onChange={onChangeMyVerb}
-          onKeyDown={(event) =>
-            event.code !== 'Enter' ? null : onVerifMyVerb()
-          }
-          helperText={error ? 'Incorrect entry.' : null}
+          onKeyDown={(event) => event.code === 'Enter' && onVerifMyVerb()}
+          helperText={error && 'Incorrect verb.'}
         />
 
         <Button onClick={onVerifMyVerb} size="large">
