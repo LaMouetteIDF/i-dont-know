@@ -1,6 +1,18 @@
+const synth = window.speechSynthesis;
+
 export function textToSpeech(word: string) {
-  let utter = new SpeechSynthesisUtterance();
+  if (synth.speaking) {
+    synth.cancel();
+  }
+
+  let utter = new SpeechSynthesisUtterance(word);
+
+  utter.addEventListener('error', () => {
+    console.error('SpeechSynthesisUtterance error');
+  });
+
   utter.lang = 'en-US';
-  utter.text = word;
-  window.speechSynthesis.speak(utter)
+  utter.rate = 0.6
+
+  synth.speak(utter)
 }
