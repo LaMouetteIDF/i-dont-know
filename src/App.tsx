@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Play from './pages/Play'
 import Verbs from './pages/Verbs'
+// import Game from "./pages/Game";
 
 function App() {
   return (
