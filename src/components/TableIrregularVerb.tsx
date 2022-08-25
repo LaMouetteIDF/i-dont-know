@@ -9,29 +9,8 @@ import {
   TableHead,
   TableRow
 } from '@mui/material'
-import VolumeUpIcon from '@mui/icons-material/VolumeUp'
-import { textToSpeech } from '../functions/textToSpeech'
 import { css } from '@emotion/css'
-
-export const IrregularAudioVerb = ({ word }: { word: string }) => (
-  <span
-    className="
-      mx-2
-      px-1.5
-      py-1
-      rounded-full
-      drop-shadow
-      bg-gray-100
-      hover:bg-gray-200
-      active:bg-gray-300
-      cursor-pointer
-      "
-    onClick={() => textToSpeech(word)}
-  >
-    <VolumeUpIcon fontSize="small" />
-    &nbsp;{word}
-  </span>
-)
+import { IrregularAudioVerb } from './IrregularAudioVerb'
 
 function TableIrregularVerb() {
   const parseWords = (value: string) =>
