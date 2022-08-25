@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { IrregularVerb } from '../types/IrregularVerb'
 import { IrregularVerbRaw } from '../types/IrregularVerbRaw'
+import {GameModesType, GameModsKey} from "../types/GameModesType";
 
 export const Data: IrregularVerb[] = []
 
@@ -36,4 +37,44 @@ export const getRandomVerb = (): IrregularVerb => {
   const indexRandom = Math.floor(Math.random() * Data.length - 1)
 
   return Data[indexRandom]
+}
+
+export const getVerbFromMods = (mods: GameModesType) => {
+  let els: [string, string][] = []
+  let include: string[] = []
+
+  const modsTables = Object.entries(mods) as [GameModsKey, boolean][]
+
+  Data.forEach(item => {
+    for (const [key, value] of modsTables) {
+      if (value) {
+        const parsedValue = item[key]
+          ?.split(/[|/]/)
+          .map(item => item
+            .replace(/\(.*\)/, '')
+            .trim()
+          )
+
+        parsedValue?.forEach(value => {
+          if (!include.includes(value)) {
+            els.push([value, item.french])
+            include.push(value)
+          }
+        })
+      }
+    }
+  })
+
+  const shuffleArray = (array: unknown[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
+  shuffleArray(els)
+
+  return els
 }
