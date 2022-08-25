@@ -6,5 +6,7 @@ export const validResponse = (input: string, response: string) => {
       .trim()
     )
 
-  return parsedResponse.some(item => new RegExp(`^${item}$`, 'i').test(input.trim()))
+  return parsedResponse.some(item =>
+    new RegExp(`^${item}$`, 'i').test(input.trim())
+  )
 }
