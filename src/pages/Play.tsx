@@ -1,7 +1,7 @@
 import { Button, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { getRandomVerb } from '../api/ApiUtils'
-import { IrregularAudioVerb } from '../components/TableIrregularVerb'
+import { IrregularAudioVerb } from '../components/IrregularAudioVerb'
 import { textToSpeech } from '../functions/textToSpeech'
 import { validResponse } from '../functions/validResponse'
 import { IrregularVerb } from '../types/IrregularVerb'
@@ -9,6 +9,8 @@ import { IrregularVerb } from '../types/IrregularVerb'
 const Play = () => {
   const [myVerb, setMyVerb] = useState<string>('')
   const [verb, setVerb] = useState<IrregularVerb>(getRandomVerb())
+  const [counterOfVerbs, setCounterOfVerbs] = useState<number>(0)
+
   const [error, setError] = useState<boolean>(false)
 
   const onChangeMyVerb = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,15 +18,13 @@ const Play = () => {
   }
 
   const onVerifMyVerb = () => {
-    const isOk = validResponse(myVerb, verb.french)
-    setError(true)
-
-    if (!isOk) return
-
-    console.log('Great!')
-    setVerb(getRandomVerb())
-    setMyVerb('')
-    setError(false)
+    if (!validResponse(myVerb, verb.french)) setError(true)
+    else {
+      setVerb(getRandomVerb())
+      setMyVerb('')
+      setError(false)
+      setCounterOfVerbs((value) => ++value)
+    }
   }
 
   useEffect(() => {
@@ -37,26 +37,33 @@ const Play = () => {
   }, [myVerb])
 
   return (
-    <div className="grid place-content-center">
-      <div>
-        <h3 className="text-center">Play</h3>
+    <div className="flex justify-center items-center flex-col h-screen">
+      <p className="my-4">Counter of Verbs: {counterOfVerbs}</p>
 
-        <h4 style={{ margin: '1rem 0' }}>
-          <IrregularAudioVerb word={verb.infinitive} />
-        </h4>
-
-        <TextField
-          error={error}
-          value={myVerb}
-          onChange={onChangeMyVerb}
-          onKeyDown={(event) => event.code === 'Enter' && onVerifMyVerb()}
-          helperText={error && 'Incorrect verb.'}
-        />
-
-        <Button onClick={onVerifMyVerb} size="large">
-          Send!
-        </Button>
+      <div className="scale-110">
+        <IrregularAudioVerb word={verb.infinitive} tooltip={verb.french} />
       </div>
+
+      <TextField
+        error={error}
+        value={myVerb}
+        onChange={onChangeMyVerb}
+        onKeyDown={(event) => event.code === 'Enter' && onVerifMyVerb()}
+        id="margin-normal"
+        autoComplete="off"
+        margin="normal"
+        sx={{
+          '& fieldset': {
+            borderRadius: '0.50rem'
+          }
+        }}
+      />
+
+      <Button onClick={onVerifMyVerb} size="large" variant="contained">
+        VALIDER
+      </Button>
+
+      <div className="h-36" />
     </div>
   )
 }
