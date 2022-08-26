@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Verbs from './pages/Verbs'
 import { ThemeProvider } from './utils/context'
+
 import Game from "./pages/Game";
 
 function App() {

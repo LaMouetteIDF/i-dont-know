@@ -8,10 +8,12 @@ import {getVerbFromMods} from "../api/ApiUtils";
 
 function Game() {
   const [isStartedGame, setIsStartedGame] = useState<boolean>(false)
+  const [words, setWords] = useState<[string, string][]>([])
 
   const startGame = (modes: GameModesType) => {
+    setWords(getVerbFromMods(modes))
     setIsStartedGame(true)
-    console.table(getVerbFromMods(modes))
+    console.table(words)
   }
   const finishGame = () => setIsStartedGame(false)
 
@@ -41,7 +43,7 @@ function Game() {
                 <GameModSelect start={startGame}/>
               </div>
             )}
-            {isStartedGame && <GameLayer/>}
+            {isStartedGame && <GameLayer words={words}/>}
           </div>
         </div>
       </div>
