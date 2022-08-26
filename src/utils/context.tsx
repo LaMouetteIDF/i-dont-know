@@ -45,7 +45,12 @@ export const ThemeProvider = ({
   return (
     <ThemeContext.Provider value={colorMode}>
       <ThemeProviderMui theme={theme}>
-        <div style={mode === 'light' ? stylelight : styleDark}>{children}</div>
+        <div
+          style={mode === 'light' ? stylelight : styleDark}
+          className="h-full"
+        >
+          {children}
+        </div>
       </ThemeProviderMui>
     </ThemeContext.Provider>
   )
