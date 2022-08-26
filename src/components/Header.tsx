@@ -10,7 +10,7 @@ function Header() {
           Home
         </Link>
         <Link className="m-2 hover:text-zinc-200" to="play">
-          Play
+          Game
         </Link>
         <Link className="m-2 hover:text-zinc-200" to="verbs">
           Verbs
