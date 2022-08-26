@@ -23,8 +23,8 @@ function Header() {
         <Link className="m-2 hover:text-zinc-200" to="/">
           Home
         </Link>
-        <Link className="m-2 hover:text-zinc-200" to="play">
-          Play
+        <Link className="m-2 hover:text-zinc-200" to="game">
+          Game
         </Link>
         <Link className="m-2 hover:text-zinc-200" to="verbs">
           Verbs
