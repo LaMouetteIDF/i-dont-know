@@ -10,11 +10,12 @@ const Home = () => {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col m-5 text-xl">
+    <div className="flex justify-center items-center flex-col m-5 text-xl h-screen">
       <h2>Welcome to my game</h2>
       <Button onClick={onNavigatePlay} size="large">
         Play!
       </Button>
+      <div className="h-36" />
     </div>
   )
 }
