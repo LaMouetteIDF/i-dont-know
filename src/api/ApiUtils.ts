@@ -50,7 +50,7 @@ export const getVerbFromMods = (mods: GameModesType) => {
       if (value) {
         const parsedValue = item[key]
           ?.split(/[|/]/)
-          .map(item => item
+          .map(value => value
             .replace(/\(.*\)/, '')
             .trim()
           )
